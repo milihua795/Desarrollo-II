@@ -1,56 +1,69 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screens/home_screen.dart';
-import 'package:flutter_application_1/screens/info_screen.dart';
-import 'package:flutter_application_1/screens/people_screen.dart';
 
+// Importamos tu actividad 1
+import 'screens/home_screen.dart';
 
-// si después quieres incluir los ejemplos del PDF:
-// import 'package:flutter_application_1/screens/home_examples.dart';
+// Importamos ejemplos de la carpeta widgetsExamples
+import 'widgetsExamples/example1.dart' as example1;
+import 'widgetsExamples/example2.dart' as example2;
+import 'widgetsExamples/example3.dart' as example3;
+import 'widgetsExamples/example4.dart' as example4;
+import 'widgetsExamples/example5.dart' as example5;
+import 'widgetsExamples/example6.dart' as example6;
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Libro de las Plantas",
-      home: PlantsBook(),
+      title: 'Práctica de Widgets',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: const MainMenu(),
     );
   }
 }
 
-class PlantsBook extends StatelessWidget {
-  const PlantsBook({super.key});
+class MainMenu extends StatelessWidget {
+  const MainMenu({super.key});
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4, // número de pestañas
+      length: 7, // 1 actividad + 6 ejemplos
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.green.shade400,
-          title: const Text(
-            'Medicina Natural',
-            style: TextStyle(color: Colors.white),
-          ),
+          title: const Text('Práctica de Widgets'),
           bottom: const TabBar(
+            isScrollable: true,
             tabs: [
-              Tab(icon: Icon(Icons.home), text: 'Plantas'),
-              Tab(icon: Icon(Icons.widgets), text: 'Widgets'),
-              Tab(icon: Icon(Icons.people), text: 'Personas'),
-              Tab(icon: Icon(Icons.info), text: 'Info'),
+              Tab(text: 'Actividad 1'),
+              Tab(text: 'Ejemplo 1'),
+              Tab(text: 'Ejemplo 2'),
+              Tab(text: 'Ejemplo 3'),
+              Tab(text: 'Ejemplo 4'),
+              Tab(text: 'Ejemplo 5'),
+              Tab(text: 'Ejemplo 6'),
             ],
           ),
         ),
-        body: const TabBarView(
+        body: TabBarView(
           children: [
-            HomeScreen(),        //  Tarjetas de plantas (usa custom_widgets)
-            Center(child: Text("Ejemplos Widgets")), // luego aquí puedes poner HomeExamples()
-            Center(child: Text("Personas")),
-            Center(child: Text("Información")),
+            // Actividad 1: Tu app principal
+            const HomeScreen(),
+
+            // Actividad 2: ejemplos
+            example1.MyExampleApp(), // Necesitamos poner cada ejemplo como widget
+            example2.MyExampleApp(),
+            example3.MyExampleApp(),
+            example4.MyExampleApp(),
+            example5.MyExampleApp(),
+            example6.MyExampleApp(),
           ],
         ),
       ),
