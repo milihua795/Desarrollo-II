@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/widgets/custom_widgets.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -6,66 +7,25 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Column(
-        children: <Widget>[
-          _PlantsCard(context),
-          _PlantsCard(context),
-          _PlantsCard(context),
-
-        ],
-      ));
-  }
-
-  Widget _PlantsCard(BuildContext context){
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        height: 125,
-        child: Card(
-          child: Row(
-            children: <Widget>[
-              Container(
-                height: 125,
-                width: 100,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Image.network(
-                    'https://metroio.vtexassets.com/arquivos/ids/240150/frontal-3106.jpg?v=638173826670800000',
-                    fit: BoxFit.cover,
-                  ),
-                )),
-              SizedBox(
-                width: 26,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text('Planta',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: 'Quicksand',
-                      color: Colors.brown,
-                      fontWeight: FontWeight.w500)),
-                  SizedBox(
-                    height: 4,
-                  ),
-                  Container(
-                    height: 1,
-                    width: 95,
-                    color: Colors.orange,
-                  ),
-                  Text('Gabriela Zuniga',
-                    style: TextStyle(fontSize: 16,fontFamily: 'Quicksand')),
-                  SizedBox(
-                    height: 4,
-                  ), 
-                ],
-              )
-            ],
+      body: ListView(
+        padding: const EdgeInsets.all(8),
+        children: const [
+          PlantsCard(
+            title: "Menta",
+            author: "Gabriela Zúñiga",
+            imageUrl: "https://es.lorealparisusa.com/-/media/project/loreal/brand-sites/oap/americas/us/ingredients-library/loreal-paris-makeup-peppermint-oil-2000x900.jpg",
           ),
-        ),
+          PlantsCard(
+            title: "Manzanilla",
+            author: "Juan Pérez",
+            imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLJoGZwf160VR5pDjdK39KVDP38lycHR4cbw&s",
+          ),
+          PlantsCard(
+            title: "Aloe Vera",
+            author: "Lucía Ramírez",
+            imageUrl: "https://cdn11.bigcommerce.com/s-ww3msiylzo/product_images/uploaded_images/aloe-vera-blog.jpg",
+          ),
+        ],
       ),
     );
   }

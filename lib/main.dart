@@ -1,58 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/home_screen.dart';
+import 'package:flutter_application_1/screens/info_screen.dart';
+import 'package:flutter_application_1/screens/people_screen.dart';
+
+
+// si después quieres incluir los ejemplos del PDF:
+// import 'package:flutter_application_1/screens/home_examples.dart';
 
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-//stateleswidget "clase dinamica"
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    //hacer wrap del container
     return const MaterialApp(
-     debugShowCheckedModeBanner: false,
-     title: "Libro de las Plantas",
-     home: PlantsBook());
+      debugShowCheckedModeBanner: false,
+      title: "Libro de las Plantas",
+      home: PlantsBook(),
+    );
   }
 }
 
-class PlantsBook extends StatelessWidget{
+class PlantsBook extends StatelessWidget {
   const PlantsBook({super.key});
 
-   @override
-   Widget build(BuildContext context){
+  @override
+  Widget build(BuildContext context) {
     return DefaultTabController(
-      length:4,
-      child:Scaffold(
+      length: 4, // número de pestañas
+      child: Scaffold(
         appBar: AppBar(
-          backgroundColor:Colors.amber.shade300,
-          title:Text('Medicina Natural',
-            style:TextStyle(color:const Color.fromARGB(255,8,8,8))),
-          bottom: TabBar(
-            indicatorColor:Colors.blue,
-            labelColor: Colors.white,
-            unselectedLabelColor: Colors.white,
+          backgroundColor: Colors.green.shade400,
+          title: const Text(
+            'Medicina Natural',
+            style: TextStyle(color: Colors.white),
+          ),
+          bottom: const TabBar(
             tabs: [
-              Tab(
-                icon: Icon(Icons.home),
-                text:'Home',
-              ),
-              Tab(
-                icon: Icon(Icons.question_mark),
-                text:'Question',
-              ),
-              Tab(
-                icon: Icon(Icons.people),
-                text:'People',
-              ),
-              Tab(
-                icon: Icon(Icons.info),
-                text:'Info',
-              ),  
-            ]), 
+              Tab(icon: Icon(Icons.home), text: 'Plantas'),
+              Tab(icon: Icon(Icons.widgets), text: 'Widgets'),
+              Tab(icon: Icon(Icons.people), text: 'Personas'),
+              Tab(icon: Icon(Icons.info), text: 'Info'),
+            ],
+          ),
         ),
-        body:TabBarView(children: [HomeScreen()])),
-      );
-   }
+        body: const TabBarView(
+          children: [
+            HomeScreen(),        //  Tarjetas de plantas (usa custom_widgets)
+            Center(child: Text("Ejemplos Widgets")), // luego aquí puedes poner HomeExamples()
+            Center(child: Text("Personas")),
+            Center(child: Text("Información")),
+          ],
+        ),
+      ),
+    );
+  }
 }
