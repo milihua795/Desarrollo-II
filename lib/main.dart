@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/home_screen.dart';
 
-// Importamos tu actividad 1
-import 'screens/home_screen.dart';
+// Importa tus ejemplos
+import 'package:flutter_application_1/widgetsExamples/example1.dart';
+import 'package:flutter_application_1/widgetsExamples/example2.dart';
+import 'package:flutter_application_1/widgetsExamples/example3.dart';
+import 'package:flutter_application_1/widgetsExamples/example4.dart';
+import 'package:flutter_application_1/widgetsExamples/example5.dart';
+import 'package:flutter_application_1/widgetsExamples/example6.dart';
 
-// Importamos ejemplos de la carpeta widgetsExamples
-import 'widgetsExamples/example1.dart' as example1;
-import 'widgetsExamples/example2.dart' as example2;
-import 'widgetsExamples/example3.dart' as example3;
-import 'widgetsExamples/example4.dart' as example4;
-import 'widgetsExamples/example5.dart' as example5;
-import 'widgetsExamples/example6.dart' as example6;
-
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -22,48 +18,52 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Práctica de Widgets',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const MainMenu(),
+      title: "Libro de las Plantas",
+      theme: ThemeData(primarySwatch: Colors.green),
+      home: const PlantsBook(),
     );
   }
 }
 
-class MainMenu extends StatelessWidget {
-  const MainMenu({super.key});
+class PlantsBook extends StatelessWidget {
+  const PlantsBook({super.key});
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 7, // 1 actividad + 6 ejemplos
+      length: 7, // 👈 Home + 6 ejemplos
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Práctica de Widgets'),
+          backgroundColor: Colors.amber.shade300,
+          title: const Text(
+            'Medicina Natural',
+            style: TextStyle(color: Color.fromARGB(255, 8, 8, 8)),
+          ),
           bottom: const TabBar(
-            isScrollable: true,
+            isScrollable: true, // 👈 para que quepan todas las pestañas
+            indicatorColor: Colors.blue,
+            labelColor: Colors.white,
+            unselectedLabelColor: Colors.white,
             tabs: [
-              Tab(text: 'Actividad 1'),
-              Tab(text: 'Ejemplo 1'),
-              Tab(text: 'Ejemplo 2'),
-              Tab(text: 'Ejemplo 3'),
-              Tab(text: 'Ejemplo 4'),
-              Tab(text: 'Ejemplo 5'),
-              Tab(text: 'Ejemplo 6'),
+              Tab(icon: Icon(Icons.home), text: 'Home'),
+              Tab(icon: Icon(Icons.text_fields), text: 'Texto'),
+              Tab(icon: Icon(Icons.star), text: 'Row/Column'),
+              Tab(icon: Icon(Icons.layers), text: 'Stack'),
+              Tab(icon: Icon(Icons.crop_square), text: 'Container'),
+              Tab(icon: Icon(Icons.image), text: 'Imágenes'),
+              Tab(icon: Icon(Icons.code), text: 'Extra'),
             ],
           ),
         ),
         body: TabBarView(
           children: [
-            // Actividad 1: Tu app principal
-            const HomeScreen(),
-
-            // Actividad 2: ejemplos
-            example1.MyExampleApp(), // Necesitamos poner cada ejemplo como widget
-            example2.MyExampleApp(),
-            example3.MyExampleApp(),
-            example4.MyExampleApp(),
-            example5.MyExampleApp(),
-            example6.MyExampleApp(),
+            HomeScreen(),   // Actividad 1
+            Example1(),     // Texto
+            Example2(),     // Row/Column
+            Example3(),     // Stack
+            Example4(),     // Container
+            Example5(),     // Imágenes
+            Example6(),     // Algún ejemplo extra
           ],
         ),
       ),
